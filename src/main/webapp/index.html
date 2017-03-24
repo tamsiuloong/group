@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>企业网站模板</title>
+  <link rel="stylesheet" href="/assets/css/amazeui.css" />
+  <link rel="stylesheet" href="/assets/css/common.min.css" />
+  <link rel="stylesheet" href="/assets/css/contact.min.css" />
+  <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+
+  <script type="application/javascript">
+    var myApp = angular.module('myApp', []);
+
+    myApp.controller('classesCtrl', function($scope, $http) {
+      $http({
+        method: 'GET',
+        url: 'classes/list'
+      }).then(function successCallback(response) {
+        $scope.classesList = response.data;
+      }, function errorCallback(response) {
+        // 请求失败执行代码
+      });
+
+    });
+    myApp.controller('schoolCtrl', function($scope, $http) {
+      $http({
+        method: 'GET',
+        url: 'school/list'
+      }).then(function successCallback(response) {
+        $scope.schoolList = response.data;
+      }, function errorCallback(response) {
+        // 请求失败执行代码
+      });
+
+    });
+
+
+  </script>
+</head>
+<body>
+<div class="layout">
+  <!--===========layout-header================-->
+  <!--mobile header start-->
+  <div class="m-header">
+    <div class="am-g am-show-sm-only">
+      <div class="am-u-sm-2">
+        <div class="menu-bars">
+          <a href="#doc-oc-demo1" data-am-offcanvas="{effect: 'push'}"><i class="am-menu-toggle-icon am-icon-bars"></i></a>
+          <!-- 侧边栏内容 -->
+          <nav data-am-widget="menu" class="am-menu  am-menu-offcanvas1" data-am-menu-offcanvas >
+            <a href="javascript: void(0)" class="am-menu-toggle"></a>
+
+            <div class="am-offcanvas" >
+              <div class="am-offcanvas-bar">
+                <ul class="am-menu-nav am-avg-sm-1">
+                  <li><a href="../index.html" class="" >首页</a></li>
+                </ul>
+
+              </div>
+            </div>
+          </nav>
+
+        </div>
+      </div>
+      <div class="am-u-sm-5 am-u-end">
+        <div class="m-logo">
+          <a href=""><img src="../assets/images/logo.png" alt=""></a>
+        </div>
+      </div>
+    </div>
+    <!--mobile header end-->
+  </div>
+
+
+
+
+  <!--===========layout-container================-->
+  <div class="layout-container">
+    <div class="page-header">
+      <div class="am-container">
+        <h1 class="page-header-title">凭感觉录入你的基本信息</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="section-container">
+        <div class="am-g">
+
+
+          <!--contact-right start-->
+          <div class="am-u-md-12"  ng-app="myApp">
+            <div class="contact-form">
+              <h3 class="contact-form_title">基本资料</h3>
+              <form class="am-form am-form-horizontal" action="student/save" method="post">
+
+                <div class="am-form-group" >
+                  <label for="classes.id" class="am-u-sm-3 am-form-label">班级</label>
+                  <div class="am-u-sm-9" ng-controller="classesCtrl">
+                    <select id="classes.id" name="classes.id" style="width: 100%;font-size: 16px;line-height: 20px;padding: 15px 20px;border-radius: 3px;color: #262626;border: 2px solid #e9e9e9;">
+                      <option ng-repeat="x in classesList" value="{{x.id}}">{{x.name}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="am-form-group">
+                  <label for="user-name" class="am-u-sm-3 am-form-label">姓名 / Name</label>
+                  <div class="am-u-sm-9">
+                    <input type="text" id="user-name" name="name" placeholder="姓名 / Name">
+                    <small>输入你的名字，让教练记住你。</small>
+                  </div>
+                </div>
+
+                <div class="am-form-group">
+                  <label for="school.id" class="am-u-sm-3 am-form-label">学校 / School</label>
+                  <div class="am-u-sm-9"  ng-controller="schoolCtrl">
+                    <select id="school.id" name="school.id" style="width: 100%;font-size: 16px;line-height: 20px;padding: 15px 20px;border-radius: 3px;color: #262626;border: 2px solid #e9e9e9;">
+                      <option ng-repeat="x in schoolList" value="{{x.id}}">{{x.name}}</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="am-form-group">
+                  <label for="user-phone" class="am-u-sm-3 am-form-label">电话 / Telephone</label>
+                  <div class="am-u-sm-9">
+                    <input type="tel" id="user-phone" name="phone" placeholder="输入你的电话号码 / Telephone">
+                  </div>
+                </div>
+
+                <div class="am-form-group">
+                  <label for="javaBase" class="am-u-sm-3 am-form-label">java基础</label>
+                  <div class="am-u-sm-9">
+                    <select id="javaBase" name="javaBase" style="width: 100%;font-size: 16px;line-height: 20px;padding: 15px 20px;border-radius: 3px;color: #262626;border: 2px solid #e9e9e9;">
+                      <option value="A">java基础优秀</option>
+                      <option value="B">java基础良好</option>
+                      <option value="C">java基础一般</option>
+                      <option value="D">java基础了解</option>
+                      <option value="E">java零基础</option>
+                    </select>
+                    <span class="am-form-caret"></span>
+                  </div>
+                </div>
+
+
+
+                <div class="am-form-group">
+                  <label for="whyUHere" class="am-u-sm-3 am-form-label">为什么来这里</label>
+                  <div class="am-u-sm-9">
+                    <textarea class="" rows="5" id="whyUHere" name="whyUHere" placeholder="输入你来这里培训的原因"></textarea>
+                    <small></small>
+                  </div>
+                </div>
+
+
+                <div class="am-form-group">
+                  <label for="target" class="am-u-sm-3 am-form-label">你的目标 </label>
+                  <div class="am-u-sm-9">
+                    <textarea class="" rows="5" name="target" id="target" placeholder="输入你的目标"></textarea>
+                    <small>比如我想学好java基础，javaweb等等，经过4个月努力学习后成为一个优秀的java工程师...</small>
+                  </div>
+                </div>
+
+
+
+                <div class="am-form-group">
+                  <label for="achievements" class="am-u-sm-3 am-form-label">你的目标成果</label>
+                  <div class="am-u-sm-9">
+                    <textarea class="" rows="5" name="achievements" id="achievements" placeholder="输入你的目标"></textarea>
+                    <small>比如：我期望在通过5个月培训过后可以独立做出完整可以运行xxx系统，并且对各个知识点清晰口述。</small>
+                  </div>
+                </div>
+
+
+                <div class="am-form-group">
+                  <label for="belief" class="am-u-sm-3 am-form-label">目标信念 / belief</label>
+                  <div class="am-u-sm-9">
+                    <select name="targetConfidence" id="belief" name="belief" style="width: 100%;font-size: 16px;line-height: 20px;padding: 15px 20px;border-radius: 3px;color: #262626;border: 2px solid #e9e9e9;">
+                      <option value="A">绝对可以达到</option>
+                      <option value="B">没那么难，只要坚持就行</option>
+                      <option value="C">很难，可是我会想办法</option>
+                      <option value="D">很难，看情况可能会放弃</option>
+                    </select>
+                    <small>达成以上目标有多少信心？</small>
+                    <span class="am-form-caret"></span>
+                  </div>
+                </div>
+                <div class="am-form-group">
+                  <label for="selfContro" class="am-u-sm-3 am-form-label">自我管理能力</label>
+                  <div class="am-u-sm-9">
+                    <select id="selfContro" name="selfContro" style="width: 100%;font-size: 16px;line-height: 20px;padding: 15px 20px;border-radius: 3px;color: #262626;border: 2px solid #e9e9e9;">
+                      <option value="A">优秀(严格自律)</option>
+                      <option value="B">良好(大部分可以管住自己)</option>
+                      <option value="C">不及格(完全管不住,需要外界强制帮助)</option>
+                    </select>
+                    <small></small>
+                    <span class="am-form-caret"></span>
+                  </div>
+                </div>
+
+                <div class="am-form-group">
+                  <label for="needHelp" class="am-u-sm-3 am-form-label">是否愿意教练帮助你</label>
+                  <div class="am-u-sm-9">
+                    <select id="needHelp" name="needHelp" style="width: 100%;font-size: 16px;line-height: 20px;padding: 15px 20px;border-radius: 3px;color: #262626;border: 2px solid #e9e9e9;">
+                      <option value="A">非常愿意</option>
+                      <option value="B">不太愿意</option>
+                    </select>
+                    <small>是否允许教练帮你共同定制学习计划，并共同制定目标承诺？</small>
+                  </div>
+                </div>
+
+
+
+                <div class="am-form-group">
+                  <label for="expect" class="am-u-sm-3 am-form-label">你有什么期望？你如何实现它？</label>
+                  <div class="am-u-sm-9">
+                    <textarea class="" rows="5" id="expect" placeholder="" name="expect"></textarea>
+                    <small>比如：我期望体验到浓郁的学习氛围，在这里大家都相互鼓励，相互支持，公共成长。我会坚持每天准时上下课，并且完成每天课后练习，而且我会在我的能力范围内帮助到更多需要帮助的同学，同时也需要得到大家的支持，肯定。</small>
+                  </div>
+                </div>
+
+
+
+
+
+                <div class="am-form-group">
+                  <div class="am-u-sm-9 am-u-sm-push-3">
+                    <button type="submit" class="am-btn am-btn-primary">保存修改</button>
+                  </div>
+                </div>
+              </form>
+
+            </div>
+          </div>
+          <!--contact-right end-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="/assets/js/jquery-2.1.0.js" charset="utf-8"></script>
+<script src="/assets/js/amazeui.js" charset="utf-8"></script>
+</body>
+
+</html>
